@@ -16,7 +16,7 @@ app_license = "MIT"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/mon_events/css/mon_events.css"
-# web_include_js = "/assets/mon_events/js/mon_events.js"
+web_include_js = "/assets/mon_events/js/mon_events.js"
 
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "mon_events/public/scss/website"
@@ -199,3 +199,9 @@ app_license = "MIT"
 # auth_hooks = [
 #	"mon_events.auth.validate"
 # ]
+
+
+fixtures = [
+    {"dt": "Web Page", "filters": [["module", "in", ("Mon Events")]]},
+    {"dt": "Web Template", "filters": [["module", "in", ("Mon Events")]]}
+]

@@ -1,0 +1,120 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-03-04 11:30:44.559709",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "event_name",
+  "event_logo",
+  "organizer",
+  "start_date",
+  "end_date",
+  "venue",
+  "description",
+  "sponsors",
+  "partners",
+  "faq",
+  "volunteers",
+  "contacts",
+  "total_prize"
+ ],
+ "fields": [
+  {
+   "fieldname": "event_name",
+   "fieldtype": "Data",
+   "label": "Event Name"
+  },
+  {
+   "fieldname": "event_logo",
+   "fieldtype": "Attach Image",
+   "label": "Event Logo"
+  },
+  {
+   "fieldname": "organizer",
+   "fieldtype": "Data",
+   "label": "Organizer"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Markdown Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "venue",
+   "fieldtype": "Data",
+   "label": "Venue"
+  },
+  {
+   "fieldname": "sponsors",
+   "fieldtype": "Table",
+   "label": "Sponsors",
+   "options": "Mon event sponsors"
+  },
+  {
+   "fieldname": "partners",
+   "fieldtype": "Table",
+   "label": "Partners",
+   "options": "Mon event partners"
+  },
+  {
+   "fieldname": "faq",
+   "fieldtype": "Table",
+   "label": "FAQ",
+   "options": "Mon FAQ"
+  },
+  {
+   "fieldname": "volunteers",
+   "fieldtype": "Table",
+   "label": "Volunteers",
+   "options": "Mon Volunteers"
+  },
+  {
+   "fieldname": "contacts",
+   "fieldtype": "Table",
+   "label": "Contacts",
+   "options": "Mon event contacts"
+  },
+  {
+   "fieldname": "total_prize",
+   "fieldtype": "Int",
+   "label": "Total Prize"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-03-04 14:50:14.795115",
+ "modified_by": "Administrator",
+ "module": "Mon Events",
+ "name": "Mon Event",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

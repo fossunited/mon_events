@@ -1,0 +1,160 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Web Template",
+  "fields": [
+   {
+    "default": null,
+    "fieldname": "image",
+    "fieldtype": "Attach Image",
+    "label": "Image",
+    "options": null,
+    "parent": "Event Title",
+    "parentfield": "fields",
+    "parenttype": "Web Template",
+    "reqd": 0
+   }
+  ],
+  "modified": "2023-03-04 15:27:44.854526",
+  "module": "Mon Events",
+  "name": "Event Title",
+  "standard": 0,
+  "template": "{% set event = frappe.db.sql(\"SELECT * from `tabMon Event` where name = %(event)s\", args, as_dict=true )%}\n\n<div class=\"row\">\n    <div class=\"col-md-6\">\n        <div class=\"row\">\n            <div class=\"col-md-3\">\n                <a class=\"logo section-padding-bottom\" href=\"/{{ event[0].event_logo }}\"> {% if event[0].event_logo %} <img src=\"{{ event[0].event_logo }}\"> {% endif %} </a>\n            </div>\n            <div class=\"col-md-9\">\n                <h1 class=\"hero-title\">{{ event[0].event_name }}</h1>\n            </div>\n        </div>\n        <h5> organizer </h5>\n    <h1 class=\"hero-title\">{{ event[0].organizer }}</h1><p class=\"hero-subtitle\">\n\t\t\t<br><br>\n    <strong onclick=\"venue()\"><span id=\"eventDate\"> </span> | {{ event[0].venue }}</strong>\n</p>\n    </div>\n    <div class=\"col-md-6\">\n        <img alt=\"\" class=\"image-with-blur hero-image image-loaded\" data-src=\"{{ image }}\" height=\"538\" src=\"{{ image }}\" width=\"538\">\n    </div>\n</div>\n<div class=\"hero\">\n<div class=\"hero-content\">\n    \n    \n    <div class=\"hero-buttons\">\n        {% if event[0].primary_action_button_label %}\n        <a class=\"btn btn-lg btn-primary\" href=\"{{ event[0].primary_action_button_url}}\">\n\t\t\t\t{{ event[0].primary_action_button_label }}\n\t    </a>\n\t    {% endif %}\n\t    {% if event[0].action_button_label %}\n\t    <a class=\"btn btn-lg btn-primary-light\" href=\"{{ event[0].action_button_url }}\">{{ event[0].action_button_label }}</a>\n\t    {% endif %}\n\t</div>\n\t\n\t</div>\n</div>\n<script> formatDateRange(\"{{ event[0].start_date}}\", \"{{ event[0].end_date }}\", \"eventDate\") \n{% if navbar %}\n$('.ml-auto').append(`<li class=\"nav-item dropdown\">\n<a aria-expanded=\"false\" aria-haspopup=\"true\" class=\"nav-link dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" id=\"id-bffabbc03e75\" role=\"button\">\n\t\tHome\n\t</a>\n<ul aria-labelledby=\"\" class=\"dropdown-menu\">\n\t{% for nav in navbar %}\n\n<a class=\"dropdown-item\" href=\"{{ nav.link }}\">\n\t{{ nav.label }}\n</a>\n{% endfor %}\n\n</ul>\n</li>`)\n{% endif %}\n</script>\n",
+  "type": "Section"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Web Template",
+  "fields": [
+   {
+    "default": null,
+    "fieldname": "title",
+    "fieldtype": "Data",
+    "label": "Title",
+    "options": null,
+    "parent": "Event Sponsors",
+    "parentfield": "fields",
+    "parenttype": "Web Template",
+    "reqd": 0
+   },
+   {
+    "default": null,
+    "fieldname": "subtitle",
+    "fieldtype": "Data",
+    "label": "Subtitle",
+    "options": null,
+    "parent": "Event Sponsors",
+    "parentfield": "fields",
+    "parenttype": "Web Template",
+    "reqd": 0
+   },
+   {
+    "default": null,
+    "fieldname": "query",
+    "fieldtype": "Small Text",
+    "label": "query",
+    "options": null,
+    "parent": "Event Sponsors",
+    "parentfield": "fields",
+    "parenttype": "Web Template",
+    "reqd": 0
+   }
+  ],
+  "modified": "2023-03-04 12:18:49.524290",
+  "module": "Mon Events",
+  "name": "Event Sponsors",
+  "standard": 0,
+  "template": "{% set sponsors = frappe.db.sql(query, args, as_dict=true) %}\n\n{% if sponsors %}\n<div class=\"section-padding-bottom\">\n<h2 class=\"section-title\">{{ title }}</h2>\n<p class=\"section-description\">{{ subtitle }} \n\n<div class=\"row mt-5 mx-md-n3 align-items-center\">\n{% for sponsor in sponsors %}\n\n    <div class=\"col-6 col-md-4 col-xs-12 py-2 p-md-3\">\n        <a href=\"{{ sponsor.company_url }}\" rel=\"noopener noreferrer\" target=\"blank\">\n            <img alt=\"{{ sponsor.company_name }}\" src=\"{{ sponsor.logo }}\">\n        </a>\n</div>\n{% endfor %}\n</div>\n</div>\n{% endif %}",
+  "type": "Section"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Web Template",
+  "fields": [
+   {
+    "default": null,
+    "fieldname": "title",
+    "fieldtype": "Data",
+    "label": "Title",
+    "options": null,
+    "parent": "FAQ",
+    "parentfield": "fields",
+    "parenttype": "Web Template",
+    "reqd": 0
+   },
+   {
+    "default": null,
+    "fieldname": "subtitle",
+    "fieldtype": "Data",
+    "label": "Subtitle",
+    "options": null,
+    "parent": "FAQ",
+    "parentfield": "fields",
+    "parenttype": "Web Template",
+    "reqd": 0
+   }
+  ],
+  "modified": "2023-03-04 12:44:34.904799",
+  "module": "Mon Events",
+  "name": "FAQ",
+  "standard": 0,
+  "template": "{% set items = frappe.db.sql(\"\"\"SELECT * from `tabMon FAQ` where parent = %(event)s and parenttype = 'Mon Event' \"\"\", args, as_dict=True) %}\n<div class=\"section-with-collapsible-content {{ 'align-center' if align == 'Center' else '' }}\">\n\t<h2 class=\"section-title\">{{ _(title) }}</h2>\n\t{%- if subtitle -%}\n\t<p class=\"section-description\">{{ _(subtitle) }}</p>\n\t{%- endif -%}\n\n\t<div class=\"collapsible-items\">\n\t\t{%- for item in items -%}\n\t\t<div class=\"collapsible-item\">\n\t\t\t{%- set collapse_id = 'id-' + frappe.utils.generate_hash('Collapse', 12) -%}\n\t\t\t<a class=\"collapsible-title\" data-toggle=\"collapse\" href=\"#{{ collapse_id }}\" role=\"button\"\n\t\t\t\taria-expanded=\"false\" aria-controls=\"{{ collapse_id }}\">\n\t\t\t\t<div class=\"collapsible-item-title\">{{ _(item.question) }}</div>\n\t\t\t\t<svg class=\"collapsible-icon\" width=\"24\" height=\"24\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t\t\t\t<path class=\"vertical\" d=\"M8 4V12\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\"\n\t\t\t\t\t\tstroke-linecap=\"round\"\n\t\t\t\t\t\tstroke-linejoin=\"round\" />\n\t\t\t\t\t<path class=\"horizontal\" d=\"M4 8H12\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\"\n\t\t\t\t\t\tstroke-linecap=\"round\"\n\t\t\t\t\t\tstroke-linejoin=\"round\" />\n\t\t\t\t</svg>\n\t\t\t</a>\n\t\t\t<div class=\"collapse collapsible-content from-markdown\" id=\"{{ collapse_id }}\">\n\t\t\t\t<div>\n\t\t\t\t\t{{ frappe.utils.md_to_html(_(item.answer)) }}\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t{%- endfor -%}\n\t</div>\n</div>\n\n<script>\n\t$(() => {\n\t\t$('.collapsible-content').on('hide.bs.collapse', function () {\n\t\t\t$(this).prev('.collapsible-title').find('.collapsible-icon').removeClass('is-opened');\n\t\t})\n\t\t$('.collapsible-content').on('show.bs.collapse', function () {\n\t\t\t$(this).prev('.collapsible-title').find('.collapsible-icon').addClass('is-opened');\n\t\t})\n\t})\n</script>\n",
+  "type": "Section"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Web Template",
+  "fields": [
+   {
+    "default": null,
+    "fieldname": "title",
+    "fieldtype": "Data",
+    "label": "Title",
+    "options": null,
+    "parent": "Mon Volunteers",
+    "parentfield": "fields",
+    "parenttype": "Web Template",
+    "reqd": 0
+   },
+   {
+    "default": null,
+    "fieldname": "subtitle",
+    "fieldtype": "Data",
+    "label": "Subtitle",
+    "options": null,
+    "parent": "Mon Volunteers",
+    "parentfield": "fields",
+    "parenttype": "Web Template",
+    "reqd": 0
+   }
+  ],
+  "modified": "2023-03-04 13:09:20.395194",
+  "module": "Mon Events",
+  "name": "Mon Volunteers",
+  "standard": 0,
+  "template": "{% set volunteers = frappe.db.sql(\"\"\"SELECT * from `tabMon Volunteers` where parent = %(event)s and parenttype = 'Mon Event'\"\"\", args, as_dict=True) %}\n\n{% if volunteers %}\n<div class=\"section-padding-bottom\">\n<h2 class=\"section-title\">{{ title }}</h2><p class=\"section-description\">{{ subtitle }}.</p>\n<div class=\"row mt-4\">\n    {% for volunteer in volunteers%}\n\n    <div class=\"mt-4 media col-md-4 col-12\">\n        <img class=\"mr-3 rounded-circle img-thumbnail\" height=\"60\" src=\"{{ volunteer.photo }}\" width=\"60\">\n        <div class=\"media-body\">\n            <h5 class=\"mb-0 mt-1\">{{ volunteer.full_name }}</h5>\n            <span class=\"text-muted small\">{{ volunteer.short_intro }}.</span>\n        </div>\n    </div>\n    {% endfor %}\n</div>\n</div>\n{% endif %}",
+  "type": "Section"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Web Template",
+  "fields": [],
+  "modified": "2023-03-04 15:25:22.535094",
+  "module": "Mon Events",
+  "name": "Mon Contacts",
+  "standard": 0,
+  "template": "{% set items = frappe.db.sql(\"\"\"SELECT * from `tabMon event contacts` where parent = %(event)s and parenttype = 'Mon Event' \"\"\", args, as_dict=True) %}\n\n<h1 class=\"title\">Contact</h1>\n\n<div class=\"row\">\n{% for item in items %}\n    <div class=\"col-md-3\">\n        <div class=\"media-body\">\n            <h5 class=\"mb-0 mt-1\">{{ item.title }}</h5>\n            <span class=\"text-muted small\">{{ item.value }}</span>\n        </div>\n    </div>\n{% endfor %}\n</div>",
+  "type": "Section"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Web Template",
+  "fields": [],
+  "modified": "2023-03-04 15:09:20.285110",
+  "module": "Mon Events",
+  "name": "Mon event",
+  "standard": 0,
+  "template": "{% set item = frappe.db.sql(\"\"\"SELECT description, total_prize from `tabMon Event` where name = %(event)s\"\"\", args, as_dict=True) %}\n<div class=\"row\">\n    <div class=\"col-md-6\"> \n        <div class=\"from-markdown\">\n        \t<div>\n        \t\t{{ frappe.utils.md_to_html(_(item[0].description)) }}\n        \t</div>\n        </div>\n\t</div>\n\t<div class=\"col-md-6\">\n\t    <h1 class=\"prize\"> {{ item[0].total_prize }} </h1>\n\t</div>\n</div>",
+  "type": "Section"
+ }
+]
