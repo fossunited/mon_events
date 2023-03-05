@@ -13,6 +13,7 @@
   "start_date",
   "end_date",
   "venue",
+  "short_description",
   "description",
   "sponsors",
   "partners",
@@ -50,7 +51,9 @@
   {
    "fieldname": "description",
    "fieldtype": "Markdown Editor",
-   "label": "Description"
+   "in_list_view": 1,
+   "label": "Description",
+   "reqd": 1
   },
   {
    "fieldname": "venue",
@@ -91,11 +94,18 @@
    "fieldname": "total_prize",
    "fieldtype": "Int",
    "label": "Total Prize"
+  },
+  {
+   "fieldname": "short_description",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Short Description",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-03-04 14:50:14.795115",
+ "modified": "2023-03-05 11:00:55.704299",
  "modified_by": "Administrator",
  "module": "Mon Events",
  "name": "Mon Event",
