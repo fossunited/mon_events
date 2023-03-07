@@ -15,11 +15,11 @@
     "reqd": 0
    }
   ],
-  "modified": "2023-03-05 10:31:36.291829",
+  "modified": "2023-03-07 12:51:51.468723",
   "module": "Mon Events",
   "name": "Event Title",
   "standard": 0,
-  "template": "{% set event = frappe.db.sql(\"SELECT * from `tabMon Event` where name = %(event)s\", args, as_dict=true )%}\n\n<div class=\"row\">\n    <div class=\"col-md-6 mt-5\">\n        <div class=\"row mt-5\">\n            <div class=\"col-md-3\">\n                <a class=\"logo section-padding-bottom\" href=\"/{{ event[0].event_logo }}\"> {% if event[0].event_logo %} <img src=\"{{ event[0].event_logo }}\"> {% endif %} </a>\n            </div>\n            <div class=\"col-md-9 d-flex align-items-center\">\n                <h1  class=\"hero-title h1 text-left \">{{ event[0].event_name }}</h1>\n            </div>\n        </div>\n        <div class=\"mt-5 pt-5\">\n        <h5 class=\"subtitle-color\"> Organizer </h5>\n    <h4 class=\"hero-title\">{{ event[0].organizer }}</h4>\n        </div>\n\t\t\t<br><br>\n\t\t\t<p class=\"hero-subtitle\">\n    <strong onclick=\"venue()\"><span id=\"eventDate\"> </span> | {{ event[0].venue }}</strong>\n</p>\n    </div>\n    <div class=\"col-md-6 d-flex justify-content-center align-items-center\">\n        <img alt=\"\" class=\"image-with-blur hero-image image-loaded\" data-src=\"{{ image }}\" src=\"{{ image }}\" height=\"200\" width=\"400\" >\n    </div>\n</div>\n<div class=\"hero\">\n<div class=\"hero-content\">\n    \n    \n    <div class=\"hero-buttons\">\n        {% if event[0].primary_action_button_label %}\n        <a class=\"btn btn-lg btn-primary\" href=\"{{ event[0].primary_action_button_url}}\">\n\t\t\t\t{{ event[0].primary_action_button_label }}\n\t    </a>\n\t    {% endif %}\n\t    {% if event[0].action_button_label %}\n\t    <a class=\"btn btn-lg btn-primary-light\" href=\"{{ event[0].action_button_url }}\">{{ event[0].action_button_label }}</a>\n\t    {% endif %}\n\t</div>\n\t\n\t</div>\n</div>\n<script> formatDateRange(\"{{ event[0].start_date}}\", \"{{ event[0].end_date }}\", \"eventDate\") \n{% if navbar %}\n$('.ml-auto').append(`<li class=\"nav-item dropdown\">\n<a aria-expanded=\"false\" aria-haspopup=\"true\" class=\"nav-link dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" id=\"id-bffabbc03e75\" role=\"button\">\n\t\tHome\n\t</a>\n<ul aria-labelledby=\"\" class=\"dropdown-menu\">\n\t{% for nav in navbar %}\n\n<a class=\"dropdown-item\" href=\"{{ nav.link }}\">\n\t{{ nav.label }}\n</a>\n{% endfor %}\n\n</ul>\n</li>`)\n{% endif %}\n</script>",
+  "template": "{% set event = frappe.db.sql(\"SELECT * from `tabMon Event` where name = %(event)s and status = 'Publish'\", args, as_dict=true )%}\n\n<div class=\"row\">\n    <div class=\"col-md-6 mt-5\">\n        <div class=\"row mt-5\">\n            <div class=\"col-md-3\">\n                <a class=\"logo section-padding-bottom\" href=\"/{{ event[0].event_logo }}\"> {% if event[0].event_logo %} <img src=\"{{ event[0].event_logo }}\"> {% endif %} </a>\n            </div>\n            <div class=\"col-md-9 d-flex align-items-center\">\n                <h1  class=\"hero-title h1 text-left \">{{ event[0].event_name }}</h1>\n            </div>\n        </div>\n        <div class=\"mt-5 pt-5\">\n        <h5 class=\"subtitle-color\"> Organizer </h5>\n    <h4 class=\"hero-title\">{{ event[0].organizer }}</h4>\n        </div>\n\t\t\t<br><br>\n\t\t\t<p class=\"hero-subtitle\">\n    <strong onclick=\"venue()\"><span id=\"eventDate\"> </span> | {{ event[0].venue }}</strong>\n</p>\n    </div>\n    <div class=\"col-md-6 d-flex justify-content-center align-items-center\">\n        <img alt=\"\" class=\"image-with-blur hero-image image-loaded\" data-src=\"{{ image }}\" src=\"{{ image }}\" height=\"200\" width=\"400\" >\n    </div>\n</div>\n<div class=\"hero\">\n<div class=\"hero-content\">\n    \n    \n    <div class=\"hero-buttons\">\n        {% if event[0].primary_action_button_label %}\n        <a class=\"btn btn-lg btn-primary\" href=\"{{ event[0].primary_action_button_url}}\">\n\t\t\t\t{{ event[0].primary_action_button_label }}\n\t    </a>\n\t    {% endif %}\n\t    {% if event[0].action_button_label %}\n\t    <a class=\"btn btn-lg btn-primary-light\" href=\"{{ event[0].action_button_url }}\">{{ event[0].action_button_label }}</a>\n\t    {% endif %}\n\t</div>\n\t\n\t</div>\n</div>\n<script> formatDateRange(\"{{ event[0].start_date}}\", \"{{ event[0].end_date }}\", \"eventDate\") \n{% if navbar %}\n$('.ml-auto').append(`<li class=\"nav-item dropdown\">\n<a aria-expanded=\"false\" aria-haspopup=\"true\" class=\"nav-link dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" id=\"id-bffabbc03e75\" role=\"button\">\n\t\tHome\n\t</a>\n<ul aria-labelledby=\"\" class=\"dropdown-menu\">\n\t{% for nav in navbar %}\n\n<a class=\"dropdown-item\" href=\"{{ nav.link }}\">\n\t{{ nav.label }}\n</a>\n{% endfor %}\n\n</ul>\n</li>`)\n{% endif %}\n</script>",
   "type": "Section"
  },
  {
@@ -49,7 +49,7 @@
     "reqd": 0
    },
    {
-    "default": null,
+    "default": "SELECT company_name, logo, company_url",
     "fieldname": "query",
     "fieldtype": "Small Text",
     "label": "query",
@@ -60,7 +60,7 @@
     "reqd": 0
    }
   ],
-  "modified": "2023-03-05 10:31:36.251456",
+  "modified": "2023-03-07 12:56:52.378508",
   "module": "Mon Events",
   "name": "Event Sponsors",
   "standard": 0,
@@ -94,7 +94,7 @@
     "reqd": 0
    }
   ],
-  "modified": "2023-03-05 10:31:36.204357",
+  "modified": "2023-03-07 13:01:14.196655",
   "module": "Mon Events",
   "name": "FAQ",
   "standard": 0,
@@ -128,33 +128,33 @@
     "reqd": 0
    }
   ],
-  "modified": "2023-03-05 10:31:36.154735",
+  "modified": "2023-03-07 13:01:52.431169",
   "module": "Mon Events",
   "name": "Mon Volunteers",
   "standard": 0,
-  "template": "{% set volunteers = frappe.db.sql(\"\"\"SELECT * from `tabMon Volunteers` where parent = %(event)s and parenttype = 'Mon Event'\"\"\", args, as_dict=True) %}\n\n{% if volunteers %}\n<div class=\"section-padding-bottom\">\n<h2 class=\"section-title\">{{ title }}</h2><p class=\"section-description\">{{ subtitle }}.</p>\n<div class=\"row mt-4\">\n    {% for volunteer in volunteers%}\n\n    <div class=\"mt-4 media col-md-4 col-12\">\n        <img class=\"mr-3 rounded-circle img-thumbnail\" height=\"60\" src=\"{{ volunteer.photo }}\" width=\"60\">\n        <div class=\"media-body\">\n            <h5 class=\"mb-0 mt-1\">{{ volunteer.full_name }}</h5>\n            <span class=\"text-muted small\">{{ volunteer.short_intro }}.</span>\n        </div>\n    </div>\n    {% endfor %}\n</div>\n</div>\n{% endif %}",
+  "template": "{% set volunteers = frappe.db.sql(\"\"\"SELECT v.* from `tabMon Volunteers` v inner join `tabMon Event` as e on v.parent = e.name where v.parent = %(event)s and parenttype = 'Mon Event' and e.status = 'Publish' \"\"\", args, as_dict=True) %}\n\n{% if volunteers %}\n<div class=\"section-padding-bottom\">\n<h2 class=\"section-title\">{{ title }}</h2><p class=\"section-description\">{{ subtitle }}.</p>\n<div class=\"row mt-4\">\n    {% for volunteer in volunteers%}\n\n    <div class=\"mt-4 media col-md-4 col-12\">\n        <img class=\"mr-3 rounded-circle img-thumbnail\" height=\"60\" src=\"{{ volunteer.photo }}\" width=\"60\">\n        <div class=\"media-body\">\n            <h5 class=\"mb-0 mt-1\">{{ volunteer.full_name }}</h5>\n            <span class=\"text-muted small\">{{ volunteer.short_intro }}.</span>\n        </div>\n    </div>\n    {% endfor %}\n</div>\n</div>\n{% endif %}",
   "type": "Section"
  },
  {
   "docstatus": 0,
   "doctype": "Web Template",
   "fields": [],
-  "modified": "2023-03-04 15:25:22.535094",
+  "modified": "2023-03-07 13:01:42.599171",
   "module": "Mon Events",
   "name": "Mon Contacts",
   "standard": 0,
-  "template": "{% set items = frappe.db.sql(\"\"\"SELECT * from `tabMon event contacts` where parent = %(event)s and parenttype = 'Mon Event' \"\"\", args, as_dict=True) %}\n\n<h1 class=\"title\">Contact</h1>\n\n<div class=\"row\">\n{% for item in items %}\n    <div class=\"col-md-3\">\n        <div class=\"media-body\">\n            <h5 class=\"mb-0 mt-1\">{{ item.title }}</h5>\n            <span class=\"text-muted small\">{{ item.value }}</span>\n        </div>\n    </div>\n{% endfor %}\n</div>",
+  "template": "{% set items = frappe.db.sql(\"\"\"SELECT c.* from `tabMon event contacts` as c inner join `tabMon Event` as e on c.parent = e.name where e.name = %(event)s and c.parenttype = 'Mon Event' and e.status = 'Publish' \"\"\", args, as_dict=True) %}\n\n<h1 class=\"title\">Contact</h1>\n\n<div class=\"row\">\n{% for item in items %}\n    <div class=\"col-md-3\">\n        <div class=\"media-body\">\n            <h5 class=\"mb-0 mt-1 subtitle-color\">{{ item.title }}</h5>\n            <span class=\"text-muted small\">{{ item.value }}</span>\n        </div>\n    </div>\n{% endfor %}\n</div>",
   "type": "Section"
  },
  {
   "docstatus": 0,
   "doctype": "Web Template",
   "fields": [],
-  "modified": "2023-03-05 10:41:06.943137",
+  "modified": "2023-03-07 13:34:32.444670",
   "module": "Mon Events",
   "name": "Mon event",
   "standard": 0,
-  "template": "{% set item = frappe.db.sql(\"\"\"SELECT description, total_prize from `tabMon Event` where name = %(event)s\"\"\", args, as_dict=True) %}\n<div class=\"row\">\n    <div class=\"col-md-6\"> \n        <div class=\"from-markdown\">\n        \t<div>\n        \t\t{{ frappe.utils.md_to_html(_(item[0].description)) }}\n        \t</div>\n        </div>\n\t</div>\n\t<div class=\"col-md-6\">\n    \t  <h3 class=\"subtitle-color\">Prize Worth</h3>\n\n\t    <p class=\"prize\"> ₹{{ item[0].total_prize }} </p>\n\t</div>\n</div>",
+  "template": "{% set item = frappe.db.sql(\"\"\"SELECT description, total_prize from `tabMon Event` where name = %(event)s and status = 'Publish' \"\"\", args, as_dict=True) %}\n{% set prize_pool = frappe.db.sql(\"\"\" SELECT p.* from `tabPrize Pool` p inner join `tabMon Event` as e on p.parent = e.name where e.name = %(event)s\"\"\", args, as_dict=True) %}\n\n<div class=\"row\">\n    <div class=\"col-md-6\"> \n        <div class=\"from-markdown\">\n        \t<div>\n        \t\t{{ frappe.utils.md_to_html(_(item[0].description)) }}\n        \t</div>\n        </div>\n\t</div>\n\t<div class=\"col-md-6\">\n\t    <div class=\"prizepool\">\n        <h3 class=\"subtitle-color\" style=\"margin-top:0px\">Prize Worth</h3>\n        <p class=\"prize\"> ₹{{ item[0].total_prize }}</p> \n        {% if prize_pool %}\n        <div class=\"row\">\n            {% for prize in prize_pool %}\n            <div class=\"col-md-4\"> <span class=\"subtitle-color\">{{ prize.label }}</span>\n                <p>₹{{ prize.prize }}</p>\n            </div> \n            {% endfor %}\n        </div>\n        {% endif %}\n\t</div>\n\t</div>\n</div>",
   "type": "Section"
  },
  {

@@ -1,0 +1,43 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-03-07 13:22:28.538409",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "label",
+  "column_break_s8hr",
+  "prize"
+ ],
+ "fields": [
+  {
+   "fieldname": "label",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Label"
+  },
+  {
+   "fieldname": "prize",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Prize"
+  },
+  {
+   "fieldname": "column_break_s8hr",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-03-07 13:28:04.057759",
+ "modified_by": "Administrator",
+ "module": "Mon Events",
+ "name": "Prize Pool",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

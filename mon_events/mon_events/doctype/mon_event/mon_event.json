@@ -9,44 +9,53 @@
  "field_order": [
   "event_name",
   "event_logo",
-  "organizer",
   "start_date",
-  "end_date",
   "venue",
+  "total_prize",
+  "column_break_xv0c",
+  "status",
+  "organizer",
+  "end_date",
   "short_description",
   "description",
+  "section_break_jlfy",
+  "prize_pool",
   "sponsors",
   "partners",
   "faq",
   "volunteers",
-  "contacts",
-  "total_prize"
+  "contacts"
  ],
  "fields": [
   {
    "fieldname": "event_name",
    "fieldtype": "Data",
-   "label": "Event Name"
+   "label": "Event Name",
+   "reqd": 1
   },
   {
    "fieldname": "event_logo",
    "fieldtype": "Attach Image",
-   "label": "Event Logo"
+   "label": "Event Logo",
+   "reqd": 1
   },
   {
    "fieldname": "organizer",
    "fieldtype": "Data",
-   "label": "Organizer"
+   "label": "Organizer",
+   "reqd": 1
   },
   {
    "fieldname": "start_date",
    "fieldtype": "Date",
-   "label": "Start Date"
+   "label": "Start Date",
+   "reqd": 1
   },
   {
    "fieldname": "end_date",
    "fieldtype": "Date",
-   "label": "End Date"
+   "label": "End Date",
+   "reqd": 1
   },
   {
    "fieldname": "description",
@@ -58,7 +67,8 @@
   {
    "fieldname": "venue",
    "fieldtype": "Data",
-   "label": "Venue"
+   "label": "Venue",
+   "reqd": 1
   },
   {
    "fieldname": "sponsors",
@@ -93,7 +103,8 @@
   {
    "fieldname": "total_prize",
    "fieldtype": "Int",
-   "label": "Total Prize"
+   "label": "Total Prize",
+   "reqd": 1
   },
   {
    "fieldname": "short_description",
@@ -101,11 +112,31 @@
    "in_list_view": 1,
    "label": "Short Description",
    "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nPublish"
+  },
+  {
+   "fieldname": "column_break_xv0c",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_jlfy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "prize_pool",
+   "fieldtype": "Table",
+   "label": "Prize Pool",
+   "options": "Prize Pool"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-03-05 11:00:55.704299",
+ "modified": "2023-03-07 13:22:54.198366",
  "modified_by": "Administrator",
  "module": "Mon Events",
  "name": "Mon Event",
